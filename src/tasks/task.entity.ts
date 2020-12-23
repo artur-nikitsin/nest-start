@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class Task {
@@ -11,6 +12,6 @@ export class Task {
   @Column()
   description: string;
 
-  @Column()
-  executors: string;
+  @ManyToMany(() => User, (user) => user.id)
+  executors: User[];
 }
